@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+.vscode/
+
+# secrets / config (adjust to your real filenames)
+.env
+config/db.php
+config/dbcon.php
+config/config.php
+
+# runtime files
+rate_limit.json
