@@ -55,11 +55,11 @@ require_once __DIR__ . '/../templates/header.php';
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-400">Movie</span>
-                        <span class="font-semibold text-white"><?= htmlspecialchars($lastReservation['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></span>
+                        <span class="font-semibold text-white"><?= e($lastReservation['title']) ?></span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-400">Hall</span>
-                        <span class="font-semibold text-white"><?= htmlspecialchars($lastReservation['hall_name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></span>
+                        <span class="font-semibold text-white"><?= e($lastReservation['hall_name']) ?></span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-400">Date & Time</span>
@@ -67,7 +67,7 @@ require_once __DIR__ . '/../templates/header.php';
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-400">Seats</span>
-                        <span class="font-semibold text-yellow-500"><?= htmlspecialchars($lastReservation['seat_list'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></span>
+                        <span class="font-semibold text-yellow-500"><?= e($lastReservation['seat_list']) ?></span>
                     </div>
                     <?php 
                     $seats_count = count(explode(',', $lastReservation['seat_list']));
@@ -75,7 +75,7 @@ require_once __DIR__ . '/../templates/header.php';
                     ?>
                     <div class="flex justify-between pt-4 border-t border-gray-800">
                         <span class="text-gray-400 font-semibold">Total Paid</span>
-                        <span class="font-bold text-xl text-yellow-500"><?= $total ?> DKK</span>
+                        <span class="font-bold text-xl text-yellow-500"><?= e((string)$total) ?> DKK</span>
                     </div>
                 </div>
             </div>

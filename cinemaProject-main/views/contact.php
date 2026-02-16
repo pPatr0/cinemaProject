@@ -56,7 +56,7 @@ if ($hours) {
 
             <form method="POST" class="space-y-4">
                 <input type="hidden" name="csrf_token"
-                       value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+                       value="<?= e($_SESSION['csrf_token']) ?>">
                 <input type="hidden" name="contact_form" value="1">
 
                 <div>
@@ -93,18 +93,18 @@ if ($hours) {
                 <div class="space-y-4 text-gray-300">
                     <div>
                         <span class="text-yellow-500 font-bold">Email:</span><br>
-                        <a href="mailto:<?= htmlspecialchars($info['contact_email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>"
+                        <a href="mailto:<?= e($info['contact_email']) ?>"
                            class="hover:text-yellow-500">
-                            <?= htmlspecialchars($info['contact_email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>
+                            <?= e($info['contact_email']) ?>
                         </a>
                     </div>
                     <div>
                         <span class="text-yellow-500 font-bold">Phone:</span><br>
-                        <?= htmlspecialchars($info['contact_number'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>
+                        <?= e($info['contact_number']) ?>
                     </div>
                     <div>
                         <span class="text-yellow-500 font-bold">Address:</span><br>
-                        <?= nl2br(htmlspecialchars($info['address'] ?? 'No address available.', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')) ?>
+                        <?= nl2br(e($info['address'] ?? 'No address available.')) ?>
                     </div>
                 </div>
             </div>
