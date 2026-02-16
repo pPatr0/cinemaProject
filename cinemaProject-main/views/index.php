@@ -52,15 +52,15 @@ $info = $pdo->query("SELECT about FROM CompanyInfo LIMIT 1")->fetch();
 
 <!-- hero section -->
 <section class="relative h-screen flex items-center justify-center bg-cover bg-center" 
-         style="background-image:url('/images/<?= htmlspecialchars(basename($hero['poster_url'] ?? 'placeholder.jpg')) ?>')">
+         style="background-image:url('/images/<?= e(basename($hero['poster_url'] ?? 'placeholder.jpg')) ?>')">
   <div class="absolute inset-0 bg-black/60"></div>
   <div class="container mx-auto px-4 z-10 text-white">
     <div class="max-w-2xl">
       <span class="bg-yellow-500 text-black px-3 py-1 rounded text-sm mb-4 inline-block font-bold">Best Seller</span>
-      <h1 class="text-5xl font-bold mb-4"><?= htmlspecialchars($hero['title'] ?? '') ?></h1>
-      <p class="text-lg mb-6"><?= htmlspecialchars($hero['description'] ?? '') ?></p>
+      <h1 class="text-5xl font-bold mb-4"><?= e($hero['title'] ?? '') ?></h1>
+      <p class="text-lg mb-6"><?= e($hero['description'] ?? '') ?></p>
       <div class="flex gap-4">
-        <a href="movie_detail.php?id=<?= htmlspecialchars($hero['movie_id'] ?? 0) ?>" 
+        <a href="movie_detail.php?id=<?= e($hero['movie_id'] ?? 0) ?>" 
            class="bg-yellow-500 text-black px-6 py-3 rounded font-bold hover:bg-yellow-600">View Details</a>
       </div>
     </div>
@@ -76,24 +76,24 @@ $info = $pdo->query("SELECT about FROM CompanyInfo LIMIT 1")->fetch();
       <p class="text-gray-400">No upcoming showings.</p>
     <?php else: ?>
       <?php foreach ($grouped as $date => $dayShows): ?>
-        <h3 class="text-2xl font-semibold text-white mt-10 mb-4"><?= htmlspecialchars($date) ?></h3>
+        <h3 class="text-2xl font-semibold text-white mt-10 mb-4"><?= e($date) ?></h3>
         <div class="grid grid-cols-1 gap-6">
           <?php foreach ($dayShows as $show):
                 $time = date('H:i', strtotime($show['start_time']));
           ?>
-            <a href="reservation.php?id=<?= htmlspecialchars($show['showing_id']) ?>" class="block">
+            <a href="reservation.php?id=<?= e($show['showing_id']) ?>" class="block">
               <div class="bg-gray-900 rounded-lg border border-gray-800 hover:border-yellow-500 transition p-6">
                 <div class="flex gap-6">
-                  <img src="/images/<?= htmlspecialchars(basename($show['poster_url'] ?? 'placeholder.jpg')) ?>" 
-                       alt="<?= htmlspecialchars($show['title']) ?>" 
+                  <img src="/images/<?= e(basename($show['poster_url'] ?? 'placeholder.jpg')) ?>" 
+                       alt="<?= e($show['title']) ?>" 
                        class="w-32 h-40 rounded-lg object-cover">
                   <div class="flex-1 flex items-start justify-between">
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-2"><?= htmlspecialchars($show['title']) ?></h3>
+                      <h3 class="text-xl font-bold text-white mb-2"><?= e($show['title']) ?></h3>
                       <div class="flex items-center gap-4 text-sm text-gray-400">
-                        <span>📍 <?= htmlspecialchars($show['hall_name']) ?></span>
-                        <span>🕒 <?= htmlspecialchars($time) ?></span>
-                        <span class="text-yellow-500 font-bold"><?= htmlspecialchars($show['price']) ?> DKK</span>
+                        <span>📍 <?= e($show['hall_name']) ?></span>
+                        <span>🕒 <?= e($time) ?></span>
+                        <span class="text-yellow-500 font-bold"><?= e($show['price']) ?> DKK</span>
                       </div>
                     </div>
                     <div class="flex items-center">
@@ -129,9 +129,9 @@ $info = $pdo->query("SELECT about FROM CompanyInfo LIMIT 1")->fetch();
             $date = date('F j, Y', strtotime($article['created_at']));
       ?>
         <div class="bg-gray-900 rounded-lg border border-gray-800 hover:border-yellow-500 transition p-6">
-          <div class="text-sm text-gray-400 mb-3">📅 <?= htmlspecialchars($date) ?></div>
-          <h3 class="text-xl font-bold mb-2 text-white"><?= htmlspecialchars($article['title']) ?></h3>
-          <p class="text-gray-400"><?= nl2br(htmlspecialchars(substr($article['body'], 0, 200))) ?>…</p>
+          <div class="text-sm text-gray-400 mb-3">📅 <?= e($date) ?></div>
+          <h3 class="text-xl font-bold mb-2 text-white"><?= e($article['title']) ?></h3>
+          <p class="text-gray-400"><?= nl2br(e(substr($article['body'], 0, 200))) ?>…</p>
         </div>
       <?php endforeach; ?>
     </div>
@@ -144,7 +144,7 @@ $info = $pdo->query("SELECT about FROM CompanyInfo LIMIT 1")->fetch();
     <h2 class="text-4xl font-bold mb-6 text-white">About <span class="text-yellow-500">Us</span></h2>
     <div class="bg-gray-900 rounded-lg border border-gray-800 p-8">
       <p class="text-gray-300 text-lg leading-relaxed">
-        <?= nl2br(htmlspecialchars($info['about'] ?? 'No information available.')) ?>
+        <?= nl2br(e($info['about'] ?? 'No information available.')) ?>
       </p>
     </div>
   </div>
