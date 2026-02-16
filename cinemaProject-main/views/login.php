@@ -4,9 +4,10 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+require_once __DIR__ . '/../config/helpers.php';
 $pdo = require_once __DIR__ . '/../config/dbcon.php';
 
-// Limitation
+// Rate Limiting
 function rateLimitCheck(string $ip): array {
     $file = __DIR__ . '/rate_limit.json';
     $data = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
@@ -22,7 +23,7 @@ function rateLimitCheck(string $ip): array {
     }
 
     $count = $data[$ip]['count'];
-    $block = $count >= 5;                    
+    $block = $count >= 5;
     return ['block' => $block, 'count' => $count, 'data' => &$data];
 }
 
@@ -63,7 +64,7 @@ if (isset($_POST['login'])) {
         $user = $stmt->fetch();
 
         if ($user && password_verify($pass, $user['password_hash'])) {
-            rateLimitClear($clientIP);          
+            rateLimitClear($clientIP);
             $_SESSION['user_id']   = $user['user_id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['is_admin']  = $user['is_admin'];
@@ -115,7 +116,7 @@ if (isset($_POST['signup'])) {
 
     <?php if ($error): ?>
         <div class="bg-red-900 border border-red-500 text-red-300 px-4 py-3 rounded mb-4">
-            <?= htmlspecialchars($error, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>
+            <?= e($error) ?>
         </div>
     <?php endif; ?>
 
@@ -128,7 +129,7 @@ if (isset($_POST['signup'])) {
     <!-- Login -->
     <form method="POST" class="space-y-4">
         <input type="hidden" name="csrf_token"
-               value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+               value="<?= e($_SESSION['csrf_token']) ?>">
         <input type="email" name="email" placeholder="Email" required
                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded text-white">
         <input type="password" name="password" placeholder="Password" required
@@ -143,7 +144,7 @@ if (isset($_POST['signup'])) {
     <!-- Signup -->
     <form method="POST" class="space-y-4">
         <input type="hidden" name="csrf_token"
-               value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+               value="<?= e($_SESSION['csrf_token']) ?>">
         <input type="text" name="name" placeholder="Full Name" required
                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded text-white">
         <input type="email" name="email" placeholder="Email" required

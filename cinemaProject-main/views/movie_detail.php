@@ -40,8 +40,8 @@ require_once __DIR__ . '/../templates/header.php';
   
         <div class="lg:col-span-1">
             <div class="sticky top-24">
-                <img src="../public/images/<?= htmlspecialchars(basename($movie['poster_url'] ?? 'placeholder.jpg')) ?>"
-                     alt="<?= htmlspecialchars($movie['title']) ?>"
+                <img src="../public/images/<?= e(basename($movie['poster_url'] ?? 'placeholder.jpg')) ?>"
+                     alt="<?= e($movie['title']) ?>"
                      class="w-full rounded-lg shadow-2xl object-cover">
             </div>
         </div>
@@ -49,20 +49,20 @@ require_once __DIR__ . '/../templates/header.php';
         <div class="lg:col-span-2">
             <div class="flex items-center gap-2 mb-4">
                 <span class="text-xs text-yellow-500 border border-yellow-500 px-2 py-1 rounded font-bold">
-                    <?= htmlspecialchars($movie['genre'] ?? 'Uncategorized') ?>
+                    <?= e($movie['genre'] ?? 'Uncategorized') ?>
                 </span>
-                <span class="text-gray-400"><?= htmlspecialchars($movie['release_year']) ?></span>
+                <span class="text-gray-400"><?= e($movie['release_year']) ?></span>
             </div>
 
-            <h1 class="text-5xl font-bold mb-4 text-white"><?= htmlspecialchars($movie['title']) ?></h1>
+            <h1 class="text-5xl font-bold mb-4 text-white"><?= e($movie['title']) ?></h1>
 
             <div class="flex items-center gap-2 text-gray-400 mb-6">
                 <span class="text-yellow-500">⏱️</span>
-                <span class="text-lg"><?= htmlspecialchars($movie['duration_min']) ?> min</span>
+                <span class="text-lg"><?= e($movie['duration_min']) ?> min</span>
             </div>
 
             <p class="text-lg text-gray-400 leading-relaxed mb-8">
-                <?= nl2br(htmlspecialchars($movie['description'])) ?>
+                <?= nl2br(e($movie['description'])) ?>
             </p>
 
             <div>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/../templates/header.php';
                     <p class="text-gray-400">No upcoming showings.</p>
                 <?php else: ?>
                     <?php foreach ($grouped as $date => $dayShowings): ?>
-                        <h3 class="text-xl font-semibold text-white mt-6 mb-3"><?= htmlspecialchars($date) ?></h3>
+                        <h3 class="text-xl font-semibold text-white mt-6 mb-3"><?= e($date) ?></h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <?php foreach ($dayShowings as $show):
                                 $time = date('H:i', strtotime($show['start_time']));
@@ -80,15 +80,15 @@ require_once __DIR__ . '/../templates/header.php';
                                 <div class="bg-gray-900 rounded-lg border border-gray-800 hover:border-yellow-500 transition p-6">
                                     <div class="flex items-center gap-2 mb-3">
                                         <span class="text-yellow-500">📍</span>
-                                        <span class="font-semibold text-white"><?= htmlspecialchars($show['hall_name']) ?></span>
+                                        <span class="font-semibold text-white"><?= e($show['hall_name']) ?></span>
                                     </div>
                                     <div class="flex items-center gap-2 mb-4">
                                         <span class="text-yellow-500">🕒</span>
-                                        <span class="text-gray-400"><?= htmlspecialchars($time) ?></span>
+                                        <span class="text-gray-400"><?= e($time) ?></span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="text-2xl font-bold text-yellow-500"><?= htmlspecialchars($show['price']) ?> DKK</span>
-                                        <a href="reservation.php?id=<?= htmlspecialchars($show['showing_id']) ?>"
+                                        <span class="text-2xl font-bold text-yellow-500"><?= e($show['price']) ?> DKK</span>
+                                        <a href="reservation.php?id=<?= e($show['showing_id']) ?>"
                                            class="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600 font-bold transition"
                                            onclick="event.stopPropagation()">Book Seats</a>
                                     </div>
