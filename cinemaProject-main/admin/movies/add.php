@@ -19,10 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $posterName = '';
     if (isset($_FILES['poster']) && $_FILES['poster']['error'] === UPLOAD_ERR_OK) {
         $tmp  = $_FILES['poster']['tmp_name'];
-        $name = basename($_FILES['poster']['name']);
-        $target = __DIR__ . '/../../public/images/' . $name;
-        if (move_uploaded_file($tmp, $target)) {
-            $posterName = $name;
+
+        // basic dimension check
+        [$w, $h] = @getimagesize($tmp);
+        if ($w && $h) {
+
+            // img ration check
+            $ratio = max($w, $h) / max(1, min($w, $h));
+            if ($ratio <= 3.0) {
+
+                // generate safe filename
+                $ext = strtolower(pathinfo($_FILES['poster']['name'], PATHINFO_EXTENSION));
+                if (!in_array($ext, ['jpg','jpeg','png','webp'])) {
+                    $ext = 'jpg';
+                }
+                $safeName = 'poster_' . bin2hex(random_bytes(6)) . '.' . $ext;
+
+                $target = __DIR__ . '/../../public/images/' . $safeName;
+                if (move_uploaded_file($tmp, $target)) {
+                    $posterName = $safeName;
+                }
+            }
         }
     }
 
@@ -74,4 +91,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </div>
 </body>
-</html> 
+</html>
