@@ -24,14 +24,14 @@ if ($hoursFooter) {
                     🎬 <span class="text-white">Cine<span class="text-yellow-500">Max</span></span>
                 </a>
                 <p class="text-gray-400 text-sm">
-                    <?= nl2br(htmlspecialchars($footerInfo['about'] ?? 'No information available.')) ?>
+                    <?= nl2br(e($footerInfo['about'] ?? 'No information available.')) ?>
                 </p>
             </div>
             <div>
                 <h3 class="font-semibold mb-4 text-white">Contact Us</h3>
                 <div class="space-y-2 text-sm text-gray-400">
-                    <div>📧 <?= htmlspecialchars($footerInfo['contact_email'] ?? 'Not available') ?></div>
-                    <div>📞 <?= htmlspecialchars($footerInfo['contact_number'] ?? 'Not available') ?></div>
+                    <div>📧 <?= e($footerInfo['contact_email'] ?? 'Not available') ?></div>
+                    <div>📞 <?= e($footerInfo['contact_number'] ?? 'Not available') ?></div>
                 </div>
             </div>
             <div>
