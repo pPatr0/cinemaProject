@@ -40,13 +40,13 @@ $reservations = $resStmt->fetchAll();
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-2xl">👤</div>
                         <div>
-                            <p class="font-semibold text-white"><?= htmlspecialchars($user['name']) ?></p>
-                            <p class="text-sm text-gray-400"><?= htmlspecialchars($user['email']) ?></p>
+                            <p class="font-semibold text-white"><?= e($user['name']) ?></p>
+                            <p class="text-sm text-gray-400"><?= e($user['email']) ?></p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 pt-4 border-t border-gray-800">
                         <span class="text-yellow-500">📧</span>
-                        <span class="text-gray-400"><?= htmlspecialchars($user['email']) ?></span>
+                        <span class="text-gray-400"><?= e($user['email']) ?></span>
                     </div>
                     <div class="pt-4 border-t border-gray-800">
                         <div class="flex items-center justify-between">
@@ -78,24 +78,24 @@ $reservations = $resStmt->fetchAll();
                                     <div class="space-y-3 flex-1">
                                         <div class="flex items-center gap-2">
                                             <span class="text-yellow-500">🎟️</span>
-                                            <h3 class="text-xl font-bold text-white"><?= htmlspecialchars($r['title']) ?></h3>
+                                            <h3 class="text-xl font-bold text-white"><?= e($r['title']) ?></h3>
                                         </div>
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                                             <div class="flex items-center gap-2 text-gray-400">
                                                 <span class="text-yellow-500">📍</span>
-                                                <span><?= htmlspecialchars($r['hall_name']) ?></span>
+                                                <span><?= e($r['hall_name']) ?></span>
                                             </div>
                                             <div class="flex items-center gap-2 text-gray-400">
                                                 <span class="text-yellow-500">📅</span>
-                                                <span><?= htmlspecialchars($date) ?></span>
+                                                <span><?= e($date) ?></span>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-2">
-                                            <span class="text-xs text-yellow-500 border border-yellow-500 px-2 py-1 rounded">Seats: <?= htmlspecialchars($r['seat_list']) ?></span>
+                                            <span class="text-xs text-yellow-500 border border-yellow-500 px-2 py-1 rounded">Seats: <?= e($r['seat_list']) ?></span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-2xl font-bold text-yellow-500"><?= htmlspecialchars($total) ?> DKK</p>
+                                        <p class="text-2xl font-bold text-yellow-500"><?= e($total) ?> DKK</p>
                                     </div>
                                 </div>
                             </div>

@@ -61,7 +61,7 @@ require_once __DIR__ . '/../templates/header.php';
 <div class="container mx-auto px-4 py-12">
     <?php if ($error): ?>
         <div class="bg-red-900 border border-red-500 text-red-300 px-4 py-3 rounded mb-6">
-            <?= htmlspecialchars($error, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>
+            <?= e($error) ?>
         </div>
     <?php endif; ?>
 
@@ -80,7 +80,7 @@ require_once __DIR__ . '/../templates/header.php';
 
                     <form method="POST" action="">
                         <input type="hidden" name="csrf_token"
-                               value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+                               value="<?= e($_SESSION['csrf_token']) ?>">
                         <input type="hidden" name="seats" id="seatsInput">
                         <table class="w-full border-separate" style="border-spacing: 4px;">
 <?php
@@ -92,7 +92,7 @@ foreach ($rows as $row) {
         $seat = $row . $j;
         $disabled = isset($reserved[$seat]) ? 'disabled' : '';
         $bg       = $disabled ? 'bg-red-600 cursor-not-allowed' : 'bg-gray-800 hover:bg-yellow-500 cursor-pointer';
-        echo '<td><button type="button" class="seat w-8 h-8 rounded text-xs ' . $bg . ' text-white transition" data-seat="' . htmlspecialchars($seat) . '" ' . $disabled . '></button></td>';
+        echo '<td><button type="button" class="seat w-8 h-8 rounded text-xs ' . $bg . ' text-white transition" data-seat="' . e($seat) . '" ' . $disabled . '></button></td>';
     }
     echo '<td class="text-center font-bold w-8 text-yellow-500">' . $row . '</td>';
     echo '</tr>';
@@ -110,8 +110,8 @@ foreach ($rows as $row) {
                 <div class="bg-gray-900 rounded-lg border border-gray-800 p-6 sticky top-24">
                     <h2 class="text-xl font-bold mb-4 text-white">Booking Summary</h2>
                     <div class="space-y-4 mb-6">
-                        <div><p class="text-sm text-gray-400 mb-2">Movie</p><p class="font-medium text-white"><?= htmlspecialchars($showing['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p></div>
-                        <div><p class="text-sm text-gray-400 mb-2">Hall</p><p class="font-medium text-white"><?= htmlspecialchars($showing['hall_name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p></div>
+                        <div><p class="text-sm text-gray-400 mb-2">Movie</p><p class="font-medium text-white"><?= e($showing['title']) ?></p></div>
+                        <div><p class="text-sm text-gray-400 mb-2">Hall</p><p class="font-medium text-white"><?= e($showing['hall_name']) ?></p></div>
                         <div><p class="text-sm text-gray-400 mb-2">Time</p><p class="font-medium text-white"><?= date('Y-m-d H:i', strtotime($showing['start_time'])) ?></p></div>
                         <div class="pt-4 border-t border-gray-800">
                             <div class="flex justify-between mb-2"><span class="text-gray-400">Seats (<span id="seatCount">0</span>)</span><span class="font-semibold text-white"><span id="totalPrice">0</span> DKK</span></div>

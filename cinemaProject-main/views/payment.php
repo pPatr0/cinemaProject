@@ -87,7 +87,7 @@ require_once __DIR__ . '/../templates/header.php';
         
         <?php if ($error): ?>
             <div class="bg-red-900 border border-red-500 text-red-300 px-4 py-3 rounded mb-6">
-                <?= htmlspecialchars($error, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>
+                <?= e($error) ?>
             </div>
         <?php endif; ?>
 
@@ -102,7 +102,7 @@ require_once __DIR__ . '/../templates/header.php';
                     </div>
 
                     <form method="POST" action="" id="paymentForm">
-                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+                        <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
                         
                         <div class="mb-4">
                             <label class="block text-gray-400 text-sm mb-2" for="card_number">Card Number</label>
@@ -178,11 +178,11 @@ require_once __DIR__ . '/../templates/header.php';
                     <div class="space-y-4 mb-6">
                         <div>
                             <p class="text-sm text-gray-400 mb-2">Movie</p>
-                            <p class="font-medium text-white"><?= htmlspecialchars($showing['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
+                            <p class="font-medium text-white"><?= e($showing['title']) ?></p>
                         </div>
                         <div>
                             <p class="text-sm text-gray-400 mb-2">Hall</p>
-                            <p class="font-medium text-white"><?= htmlspecialchars($showing['hall_name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
+                            <p class="font-medium text-white"><?= e($showing['hall_name']) ?></p>
                         </div>
                         <div>
                             <p class="text-sm text-gray-400 mb-2">Time</p>

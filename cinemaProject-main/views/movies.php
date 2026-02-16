@@ -16,8 +16,8 @@ require_once __DIR__ . '/../templates/header.php';
         <button class="filter-btn bg-yellow-500 text-black px-4 py-2 rounded font-bold" data-genre="all">All</button>
         <?php foreach ($genres as $g): ?>
             <button class="filter-btn bg-gray-800 text-white px-4 py-2 rounded font-bold hover:bg-gray-700"
-                    data-genre="<?= htmlspecialchars($g['genre']) ?>">
-                <?= htmlspecialchars($g['genre']) ?>
+                    data-genre="<?= e($g['genre']) ?>">
+                <?= e($g['genre']) ?>
             </button>
         <?php endforeach; ?>
     </div>
@@ -26,19 +26,19 @@ require_once __DIR__ . '/../templates/header.php';
         <?php foreach ($movies as $movie):
             $genre = $movie['genre'] ?: 'Uncategorized'; ?>
             <div class="movie-card bg-gray-900 rounded-lg border border-gray-800 hover:border-yellow-500 transition overflow-hidden"
-                 data-genre="<?= htmlspecialchars($genre) ?>">
+                 data-genre="<?= e($genre) ?>">
                 <div class="aspect-[2/3] bg-gray-800 overflow-hidden">
-                    <img src="../public/images/<?= htmlspecialchars(basename($movie['poster_url'] ?? 'placeholder.jpg')) ?>"
-                         alt="<?= htmlspecialchars($movie['title']) ?>"
+                    <img src="../public/images/<?= e(basename($movie['poster_url'] ?? 'placeholder.jpg')) ?>"
+                         alt="<?= e($movie['title']) ?>"
                          class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
-                    <span class="text-xs text-yellow-500 border border-yellow-500 px-2 py-1 rounded font-bold mr-1"><?= htmlspecialchars($genre) ?></span>
-                    <span class="text-sm text-gray-400 ml-2"><?= htmlspecialchars($movie['release_year']) ?></span>
-                    <h3 class="text-xl font-bold mt-2 text-white"><?= htmlspecialchars($movie['title']) ?></h3>
-                    <div class="text-sm text-gray-400 mt-2">⏱️ <?= htmlspecialchars($movie['duration_min']) ?> min</div>
-                    <p class="text-sm text-gray-400 mt-3"><?= htmlspecialchars($movie['description']) ?></p>
-                    <a href="movie_detail.php?id=<?= htmlspecialchars($movie['movie_id']) ?>"
+                    <span class="text-xs text-yellow-500 border border-yellow-500 px-2 py-1 rounded font-bold mr-1"><?= e($genre) ?></span>
+                    <span class="text-sm text-gray-400 ml-2"><?= e($movie['release_year']) ?></span>
+                    <h3 class="text-xl font-bold mt-2 text-white"><?= e($movie['title']) ?></h3>
+                    <div class="text-sm text-gray-400 mt-2">⏱️ <?= e($movie['duration_min']) ?> min</div>
+                    <p class="text-sm text-gray-400 mt-3"><?= e($movie['description']) ?></p>
+                    <a href="movie_detail.php?id=<?= e($movie['movie_id']) ?>"
                        class="block mt-4 bg-yellow-500 text-black px-4 py-2 rounded font-bold hover:bg-yellow-600 text-center">
                         Show Detail
                     </a>
