@@ -2,11 +2,12 @@
 .DS_Store
 .vscode/
 
-# secrets / config (adjust to your real filenames)
+# secrets / config
+cinemaProject-main/config/config.php
+cinemaProject-main/config/db.php
+cinemaProject-main/config/dbcon.php
 .env
-config/db.php
-config/dbcon.php
-config/config.php
 
 # runtime files
 rate_limit.json
+``
