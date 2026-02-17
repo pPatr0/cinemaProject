@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/autoload.php';
+
 $config = require __DIR__ . '/config.php';
 $c = $config['db'];
 try {
